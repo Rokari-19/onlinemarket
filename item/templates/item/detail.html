@@ -4,9 +4,11 @@
 
 {% block content %}
 <div>
-    <div class=" items-center justify-center ">
-        <img src="{{ item.image.url }}" class="rounded-lg">
-    </div><br>
+    {% if item.image.url %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <img src="{{ item.image.url }}" class="rounded-lg">
+        </div><br>
+    {% endif %}
     <div class="p-3 bg-gray-200 rounded-xl">
         <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
         <p class="text-black-500"><strong>Price: </strong>{{ item.pricing }}</p>
@@ -18,13 +20,25 @@
             </p>
         {% endif %}
 
-        <a href="#" class="inline-block mt-6 px-6 py-3 text-md font-semibold bg-blue-500 text-white hover:bg-blue-800 rounded-lg">Contact Seller</a>
+        {% if request.user == item.created_by %}
+            <div class="mt-6 p-6 bg-white rounded-lg">
+                <p>You posted this</p>
+                <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-lg">
+                    Delete
+                </a>
+                <a href="{% url 'item:edit_item' item.id %}" class="inline-block mx-auto mt-6 px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-lg">
+                    Edit
+                </a>
+            </div>
+        {% else %}
+            <a href="#" class="inline-block mt-6 px-6 py-3 text-md font-semibold bg-blue-500 text-white hover:bg-blue-800 rounded-lg">Contact Seller</a>
+        {% endif %}
     </div>
 </div>
 
 <div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
     <h2 class="mb-12 text-2xl text-center">Related Items</h2>
-    <div class="">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {% for item in related_items %}
             <div class="mb-4">
                 <a href="{% url 'item:detail' item.id %}">
@@ -34,6 +48,7 @@
                     <div class="p-6 bg-white rounded-b-xl">
                         <h2 class="text-2xl">{{ item.name }}</h2>
                         <p class="text-black-500">Price: N{{ item.pricing }}</p>
+
                     </div>
                 </a>
             </div>

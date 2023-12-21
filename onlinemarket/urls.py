@@ -23,5 +23,6 @@ from marketplace.views import index, contact
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('items/', include('item.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('', include('marketplace.urls'))
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
