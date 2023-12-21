@@ -3,17 +3,17 @@
 {% block title %}{{ item.name }}{% endblock %}
 
 {% block content %}
-<div class="grid grid-cols-5 gap-6">
-    <div class="col-span-3">
-        <img src="{{ item.image.url }}" class="rounded-xl">
-    </div>
-    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+<div>
+    <div class=" items-center justify-center ">
+        <img src="{{ item.image.url }}" class="rounded-lg">
+    </div><br>
+    <div class="p-3 bg-gray-200 rounded-xl">
         <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
-        <p class="text-gray-500"><strong>Price: </strong>{{ item.pricing }}</p>
-        <p class="text-gray-500"><strong>Seller: </strong>{{ item.created_by }}</p>
+        <p class="text-black-500"><strong>Price: </strong>{{ item.pricing }}</p>
+        <p class="text-black-500"><strong>Seller: </strong>{{ item.created_by }}</p>
         {% if item.description %}
             <p class="text-gray-500">
-                <strong class="text-gray-700">Details: </strong><br>
+                <strong class="text-gray-900">Details: </strong><br>
                 {{ item.description }}
             </p>
         {% endif %}
@@ -22,11 +22,11 @@
     </div>
 </div>
 
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+<div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
     <h2 class="mb-12 text-2xl text-center">Related Items</h2>
-    <div class="grid grid-cols-3 gap-3">
+    <div class="">
         {% for item in related_items %}
-            <div>
+            <div class="mb-4">
                 <a href="{% url 'item:detail' item.id %}">
                     <div>
                         <img src="{{ item.image.url }}" class="rounded-t-xl">

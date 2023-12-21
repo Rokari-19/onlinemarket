@@ -1,11 +1,11 @@
 {% extends 'marketplace/base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} Dashboard {% endblock %}
 
 {% block content %}
-    <div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
-        <h2 class="mb-12 text-2xl text-center">Newest Items</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+        <h2 class="mb-12 text-2xl text-center">My Items</h2>
+        <div class="grid grid-cols-3 gap-3">
             {% for item in items %}
                 <div>
                     <a href="{% url 'item:detail' item.id %}">
@@ -22,15 +22,15 @@
         </div>
     </div>
 
-    <div class="mt-6 px-6 py-12 bg-gray-200 rounded-xl">
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
         <h2 class="mb-12 text-2xl text-center">Categories</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div class="grid grid-cols-3 gap-3">
             {% for category in categories %}
                 <div>
                     <a href="#">
                         <div class="p-6 bg-white rounded-xl">
-                            <h2 class="text-xl text-center">{{ category.name }}</h2>
-                            <p class="text-black-500 text-center">{{ category.items.count }} Items</p>
+                            <h2 class="text-2xl">{{ category.name }}</h2>
+                            <p class="text-black-500">{{ category.items.count }} Items</p>
                         </div>
                     </a>
                 </div>
