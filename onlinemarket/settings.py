@@ -88,13 +88,23 @@ WSGI_APPLICATION = 'onlinemarket.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': 'postgresql://postgres:d2FDgc3AF5e5c*3E4FCede5dabc5abF3@roundhouse.proxy.rlwy.net:58270/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'd2FDgc3AF5e5c*3E4FCede5dabc5abF3',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '58270',
     }
 }
-
 # Update database configuration from $DATABASE_URL environment variable (if defined)
 
 
